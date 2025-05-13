@@ -1,0 +1,23 @@
+Explanation of Implementation – Assessment Submission
+========================================================
+
+Dear Examiner
+
+This assessment does not use any external persistence. All data is stored in memory. I created objects to represent the entities Course, Assignment, Student, and Grade, as if I were working with a relational database. The relationships between these entities are bi-directional:
+
+- A Course has a list of Assignments, and each Assignment belongs to a single Course.
+- A Course has a list of Students, and each Student can be enrolled in multiple courses.
+- The Grade object contains references to Course, Student, Assignment, and the grade itself. In a relational database, this would correspond to a bridge table for many-to-many relationships. In a database implementation, the Grade object would not need to store the Course, since the Assignment already belongs to a single Course. However, I included it here to simplify certain lookups.
+
+I stored the lists of Course, Assignment, Student, and Grade inside the CourseServiceImpl class to maintain the data in memory without external persistence. A limitation of using lists is that lookups require iterating over the entire list, resulting in O(n) complexity. To improve this, I could have used dictionaries (hash maps), using IDs as keys to allow faster lookups. However, I chose lists for simplicity and maintainability. In a real application, lookups like these would typically be handled by a database system.
+
+To see example usage of the CourseServiceImpl class, run:
+$ python main.py
+
+To run the unit tests:
+$ python -m unittest test_course.py
+
+Thank you.
+Best regards,
+
+Antonio Bortoletto
